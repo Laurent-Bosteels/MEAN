@@ -20,7 +20,7 @@ export class FriendsComponent implements OnInit {
     lname : 'Jenkins',
     email : 'leroyjenkings@gmail.com',
     phone : '0469696969',
-    comment : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit error debitis voluptas magnam enim laboriosam sequi et, aspernatur explicabo facilis.' ,
+    language : 'PHP',
   };
 
   constructor() { }

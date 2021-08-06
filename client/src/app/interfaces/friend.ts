@@ -4,5 +4,5 @@ export interface Friend {
     lname : string;
     email : string;
     phone : string;
-    comment : string;
+    language : string;
 }
