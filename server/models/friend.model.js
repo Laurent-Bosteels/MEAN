@@ -1,7 +1,6 @@
 // Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
-
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const friendSchema = new Schema({
   fname: {
@@ -23,7 +22,7 @@ const friendSchema = new Schema({
     trim: true,
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
     minlength: 1,
     trim: true,
@@ -37,5 +36,5 @@ const friendSchema = new Schema({
 });
 
 /* To use our schema definition, we need to convert our blogSchema into a Model we can work with. To do so, we pass it into mongoose.model(modelName, schema) */
-const Friend = mongoose.model('Friend', friendSchema, "friends");
+const Friend = mongoose.model('Friend', friendSchema);
 module.exports = Friend;
