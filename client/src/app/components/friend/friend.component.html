@@ -1,0 +1,82 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand">{{title}}</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="container-form">
+
+      <form #friendsForm="ngForm" (ngSubmit)="onSubmit()" name="friendsForm" class="row g-3 needs-validation">
+
+        <div class="col-md-6">
+          <label for="fname" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="fname" name="fname" required
+            [(ngModel)]="friendModel.fname" #fname="ngModel" pattern="[a-zA-Z ]*"
+            [class.is-invalid]="fname.invalid && fname.touched"
+            [class.is-valid]="fname.valid" />
+        </div>
+
+        <div class="col-md-6">
+          <label for="lname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lname" name="lname" required
+            [(ngModel)]="friendModel.lname" #lname="ngModel" pattern="[a-zA-Z ]*"
+            [class.is-invalid]="lname.invalid && lname.touched"
+            [class.is-valid]="lname.valid" />
+        </div>
+
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required
+            [(ngModel)]="friendModel.email" #email="ngModel" [email]="true"
+            [class.is-invalid]="email.invalid && email.touched" [class.is-valid]="email.valid" />
+        </div>
+
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" class="form-control" id="phone" name="phone" required
+            [(ngModel)]="friendModel.phone" #phone="ngModel"
+            pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" minlength="3"
+            [class.is-invalid]="phone.invalid && phone.touched" [class.is-valid]="phone.valid" />
+        </div>
+
+        <div class="col-md-6">
+          <label for="language" class="form-label">Favorite language</label>
+          <select id="language" class="form-select" name="language" required
+            [(ngModel)]="friendModel.language" #language="ngModel"
+            [class.is-invalid]="language.invalid && language.touched" [class.is-valid]="language.valid">
+            <option *ngFor="let n of favoriteLanguage">{{ n }}</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" id="submit" class="btn btn-primary" [disabled]="!friendsForm.form.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-lg-3 col-md-6 col-sm-6 friend" *ngFor="let friend of allFriends">
+      <figure class="user-card orange">
+        <figcaption>
+          <h5>{{friend.fname + " " + friend.lname}}</h5>
+          <h6>{{friend.email}}</h6>
+          <ul class="contacts">
+            <li>
+              {{friend.phone}}
+            </li>
+            <li>
+              <a href="http://{{friend.inputWebsite}}">
+                {{friend.inputWebsite}}
+              </a>
+            </li>
+          </ul>
+          <div class="clearfix">
+            <span class="badge badge-pill badge-info">{{friend.language}}</span>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
