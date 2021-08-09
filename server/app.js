@@ -29,23 +29,40 @@ db.once("open", () => {
 
 /* Route handlers */
 /* List Routes */
-let allFriends = [];
 
-app.get('/', function (request, response) {
-    response.send('Hello from server');
+app.get("/", function (request, response) {
+  response.send("Hello from server");
 });
 
-app.get('/allFriends',function (request, response){
-    response.send(allFriends);
+// Get All Route
+app.get("/allFriends", async (req, res) => {
+  try {
+    const friends = await Friend.find();
+    res.json(friends);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
-app.post('/', function (request, response) {
-    response.status(200).send({"message": "Data received"});
+app.post("/", function (request, response) {
+  response.status(200).send({ message: "Data received" });
 });
 
-app.post('/allFriends', function (request, response) {
-    allFriends.push(request.body);
-    response.status(200).send({"message" : "Data Received"});
+// Create One Route
+app.post("/allFriends", async (req, res) => {
+  const friend = new Friend({
+    fname: req.body.fname,
+    lname: req.body.lname,
+    email: req.body.email,
+    phone: req.body.phone,
+    language: req.body.language,
+  });
+  try {
+    const newFriend = await friend.save();
+    res.status(201).json({ newFriend });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
 app.listen(3000, () => {
