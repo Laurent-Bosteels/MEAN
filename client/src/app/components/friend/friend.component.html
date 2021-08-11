@@ -59,7 +59,7 @@
 
   <div class="row my-5">
     <div class="col-lg-3 col-md-6 col-sm-6 mb-3 friend" *ngFor="let friend of allFriends">
-      <div class="card">
+      <div class="card h-100">
         <div class="card-body justify-content-between">
           <h5 class="card-title">{{friend.fname + " " + friend.lname}}</h5>
         </div>
@@ -68,20 +68,10 @@
           <li class="list-group-item">{{friend.phone}}</li>
           <li class="list-group-item">Favorite language: {{friend.language}}</li>
         </ul>
+        <div class="card-body text-center">
+          <button (click)="onDelete(friend._id)" class="btn btn-primary m-2" type="submit">Delete</button>
+          <button (click)="onUpdate(friend._id, {})" class="btn btn-primary m-2" type="submit">Update</button>
+        </div>
       </div>
-     <!--  <figure class="user-card orange">
-        <figcaption>
-          <h5>{{friend.fname + " " + friend.lname}}</h5>
-          <h6>{{friend.email}}</h6>
-          <ul class="contacts">
-            <li>
-              {{friend.phone}}
-            </li>
-            <li>
-                {{friend.language}}
-            </li>
-          </ul>
-        </figcaption>
-      </figure> -->
     </div>
   </div>

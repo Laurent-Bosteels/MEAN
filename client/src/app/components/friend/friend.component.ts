@@ -30,6 +30,22 @@ export class FriendComponent implements OnInit {
     this.getAllFriends(this.addFriendService.url);
   }
 
+  onDelete(id: string) {
+    console.log(id);
+    this.addFriendService.deleteFriend(id).subscribe(
+      (data) => console.log('Succes', data),
+      (error) => console.log('Error', error)
+    );
+  }
+
+  onUpdate(id: string, {}) {
+    this.addFriendService.updateFriend(id).subscribe(
+      (data) => console.log('Succes', data),
+      (error) => console.log('Error', error)
+    );
+    // this.getAllFriends(this.addFriendService.url);
+  }
+
   public async getAllFriends(url: string): Promise<any> {
     return await fetch(url, {
       method: 'GET',
